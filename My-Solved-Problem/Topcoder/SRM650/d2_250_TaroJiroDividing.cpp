@@ -5,20 +5,31 @@ using namespace std;
 
 class TaroJiroDividing{
  	public:	
-	int gcd(int x,int y);
  	int getNumber(int a,int b);	   
 };
 
-int TaroJiroDividing::gcd(int x,int y){
-	return 5;
-}
 
 int TaroJiroDividing::getNumber(int a, int b){
-	return gcd(3,4);
+
+        if(a>b){
+            int t=b;
+            b=a;
+            a=t;
+        }
+	int l=log2(b/a);
+        cout<<"l :"<<l<<endl;
+        if(pow(2,l)*a==b){
+            int c=0;
+            while(!(1<<c & a)){
+                c++;
+            }
+            return ++c;
+        }
 }
 
 int main(){
 	TaroJiroDividing t;
 	int a,b;
-	cout<<t.getNumber(a,b);
+        while(cin>>a>>b)
+        	cout<<t.getNumber(a,b)<<endl;
 }
