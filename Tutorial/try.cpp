@@ -1,15 +1,29 @@
-#include <iostream>
+#include <bits/stdc++.h>
+
 using namespace std;
 
-double tax(int salary, double taxPercentages){
-  return salary*(taxPercentages/100);
+
+void display(int *p/*dfdsf*/){
+	for(int i=0;i<4;i++){
+
+		cout<<p[i]<<"  "<<&p[i]<<endl; //ex[5]==(ex+5)
+		cout<<*(p+i)<<"  "<<(p+i)<<endl; //ex[5]==(ex+5)
+	}
 }
 
+void displayy(int p[]){
+	for(int i=0;i<4;i++){
+
+		cout<<p[i]<<"  "<<&p[i]<<endl; //ex[5]==(ex+5)
+		cout<<*(p+i)<<"  "<<(p+i)<<endl; //ex[5]==(ex+5)
+	}
+}
 
 int main(){
-  int salary;
-  double taxPercentages;
-  while(cin>>salary>>taxPercentages){
-      cout<<tax(salary,taxPercentages)<<endl;
-  }
+	int ex[4]={4,5,6,7};
+
+	display(ex);
+	cout<<endl;
+	displayy(ex);
 }
+

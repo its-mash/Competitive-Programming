@@ -1,0 +1,6 @@
+{
+	"shell": true,
+    "cmd": ["gnome-terminal -e 'bash -c \"python3.6  \"-u\" \"${file}\";echo Press ENTER to continue; read line;exit; exec bash\"'"],
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "selector": "source.python"
+}
