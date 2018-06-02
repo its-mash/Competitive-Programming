@@ -50,4 +50,4 @@ int main()
     int n = sizeof(arr)/sizeof(arr[0]);
     printCombination(arr, n, r);
 }
- ayhumar.yakup@gmail.com humargul516 
+
