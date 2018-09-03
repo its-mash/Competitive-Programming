@@ -42,6 +42,7 @@ int main(){
 	        		c++;
 	        		nama=ex[i].name;
 	        	}
+				if(c>1)break;
 	        }
 	        if(c==1){
 	        	cout<<nama<<endl;
