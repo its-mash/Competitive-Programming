@@ -1,0 +1,106 @@
+struct compare {
+    bool operator()(std::shared_ptr<myObject> &lhs, 
+                    std::shared_ptr<myObject> &rhs) const {
+        return lhs->value < rhs->value;
+    }
+};
+
+std::multiset<std::shared_ptr<myObject>, compare> myset;
+--------------------------------------------------------
+vector<vector<int> > ed(m,vector<int>(3));
+--------------------------------------------------------
+string(cc[i]/2,i+'a');
+--------------------------------------------------------
+reverse(f.begin(),f.end());
+--------------------------------------------------------
+pi=acos(-1)
+--------------------------------------------------------
+tm.find_first_not_of("0123456789")==string::npos
+--------------------------------------------------------
+sort(ex,ex+n,greater<int>());
+--------------------------------------------------------
+b*=log10(a)/log10(c);
+--------------------------------------------------------
+int fact[size],rfact[size];
+inline int add(int x,int y){
+	x+=y;
+	if(x>=mod)	x-=mod;
+	return x;
+}
+
+inline int sub(int x,int y){
+	x-=y;
+	if(x<0) x+=mod;
+	return x;
+}
+inline int mul(int x, int y){
+	return 1LL*x*y%mod;
+}
+inline int bin_pow(int x,int y){
+	if(y==0)return 1;
+	return (y & 1)? mul(x,bin_pow(x,y-1)):bin_pow(mul(x,x),y/2);
+}
+
+void precompute(){
+	fact[0]=rfact[0]=1;
+	for(int i=1;i<size;i++){
+		fact[i]=mul(fact[i-1],i);
+	}
+	rfact[size-1]=bin_pow(fact[size-1],mod-2);
+	for(int i=size-1;i>0;i--){
+		rfact[i-1]=mul(rfact[i],i);
+	}
+	// for(int i=0;i<size;i++)
+	// 	cout<<fact[i]<<" ";
+	// cout<<endl;
+	// for(int i=0;i<20;i++)
+	// 	cout<<rfact[i]<<" ";
+	// cout<<endl;
+
+}
+inline int ncr(int n,int r){
+	if(r<0 || r>n)return 0;
+	// cout<<r<<endl;
+	return mul(mul(fact[n],rfact[n-r]),rfact[r]);
+}
+int stirling(int n,int k){
+	int res=0;
+	for(int j=k;j>=0;j--){
+		int val=mul(ncr(k,j),bin_pow(j,n));
+		// cout<<"val:"<<ncr(k,j)<<endl;
+		if(k-j & 1)
+			res=sub(res,val);
+		else
+			res=add(res,val);
+	}
+	return mul(res,rfact[k]);
+}
+--------------------------------------------------------
+srand(time(NULL));
+	while(clock() < .2*CLOCKS_PER_SEC){:
+--------------------------------------------------------
+int root(int cn[][2],int x){
+
+	while(cn[x][0]!=x){
+		cn[x][0]=cn[cn[x][0]][0];
+		x=cn[x][0];
+	}
+	return x;
+}
+
+int rx=root(cn,x),ry=root(cn,y);
+if(cn[x][1]>=cn[y][1]){
+	cn[ry][0]=rx;		
+	cn[rx][1]+=cn[ry][1];
+}
+else{
+	cn[rx][0]=ry;		
+	cn[ry][1]+=cn[rx][1];
+}
+
+--------------------------------------------------------
+int **ex=new int*[n+1];
+				ex[a]=new int[n+1];
+
+
+--------------------------------------------------------

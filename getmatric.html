@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	table {
+	    font-family: arial, sans-serif;
+	    border-collapse: collapse;
+	    width: 100%;
+	}
+
+	td, th {
+	    border: 1px solid #dddddd;
+	    text-align: left;
+	    padding: 8px;
+	}
+
+	tr:nth-child(even) {
+	    background-color: #dddddd;
+	}
+	</style>
+	<script type="text/javascript" language="javascript">
+		// <![CDATA[
+		var minmat,maxmat,pname,cmat;
+		var notReceived=true;
+		function createRequestObject() {
+		    var ro;
+		    if (navigator.appName == "Microsoft Internet Explorer") {
+		        ro = new ActiveXObject("Microsoft.XMLHTTP");
+		    } else {
+		        ro = new XMLHttpRequest();
+		    }
+		    return ro;
+		}
+		var http = createRequestObject();
+		function sendRequest(mat) {
+			cmat=mat;
+			var postdata = 'mat=' + mat;
+		    //alert(param);
+		    http.open('POST', 'get_name.php?',true);
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.setRequestHeader("Content-length", postdata.length);
+			http.setRequestHeader("Connection", "close");
+			
+		    http.onreadystatechange = handleResponse;
+		    http.send(postdata);
+		}
+		function handleResponse() {
+		    if(http.readyState == 4){
+		        var name= http.responseText;
+		        notReceived=false;
+		        if(name.includes(pname)){
+		        	document.getElementById('content').innerHTML="<tr> <td>"+cmat+"</td><td>"+name+"</td> </tr>";
+		        }
+		    }
+		}
+		function findit(){
+			var minmat=Number(document.getElementById("minmat").value);
+			var maxmat=Number(document.getElementById("maxmat").value);
+			var pname=Number(document.getElementById("pname").value);
+			
+			minmat=minmat*10000;
+			maxmat=maxmat*10000+9999;	
+			for(var b=minmat;b<=maxmat;b++){
+				notReceived=true;
+				sendRequest(minmat);	
+				while(notReceived){
+
+				}
+				console.log(minmat);
+			}
+		}
+
+		// ]]>
+	</script>
+</head>
+<body>
+	<form >
+	  Part of Name:<br>
+	  <input type="text" id="pname">
+	  <br>
+	  Min of first 3 digit:<br>
+	  <input type="text" id="minmat" value="181">
+	  Max of first 3 digit:<br>
+	  <input type="text" id="maxmat" value="182">
+	  <br><br>
+	  <input type="button" value="Find it!" onclick="findit()">
+	</form> 
+	<div class="content">
+		<table id="content">
+		  <tr>
+		    <th>Name</th>
+		    <th>Matric No</th>
+		  </tr>
+		  <tr>
+		    <td>1354645</td>
+		    <td>Maria Anders</td>
+		  </tr>
+		</table>
+	</div>
+</body>
+</html>
