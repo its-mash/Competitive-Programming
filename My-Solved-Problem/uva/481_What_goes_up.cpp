@@ -14,9 +14,9 @@ int main(){
 		m[pos]=a[i];
 		m_id[pos]=i;
 		p[i]=pos?m_id[pos-1]:-1;
-//		for(int x=0;x<l+1;x++)
-//			cout<<m[x]<<" ";
-//		cout<<endl;
+		for(int x=0;x<=i;x++)
+			cout<<m[x]<<" ";
+		cout<<endl;
 		if(pos==l){
 			l++;
 			l_end=i;

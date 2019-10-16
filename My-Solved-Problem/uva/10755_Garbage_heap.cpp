@@ -69,68 +69,102 @@
 //	}
 //	return 0;
 //}
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// #define ll long long
+// int main(){
+// 	int t;cin>>t;
+// 	while(t--){
+// 		int a,b,c;cin>>a>>b>>c;
+// 		a++;b++;c++;
+// 		ll dn[a][b][c]={},ans=INT_MIN;
+// 		for(int i=1;i<a;i++){
+// 			for(int j=1;j<b;j++){
+// 				for(int k=1;k<c;k++){
+// 					cin>>dn[i][j][k];
+// 					dn[i][j][k]+=dn[i-1][j][k];
+// 					dn[i][j][k]+=dn[i][j-1][k];
+// 					dn[i][j][k]+=dn[i][j][k-1];
+					
+// 					dn[i][j][k]-=dn[i-1][j-1][k];
+// 					dn[i][j][k]-=dn[i-1][j][k-1];
+// 					dn[i][j][k]-=dn[i][j-1][k-1];
+
+// 					dn[i][j][k]+=dn[i-1][j-1][k-1];
+
+// 				}
+// 			}
+// 		}
+// //    for (int i=1;i<a;++i){
+// //		for (int j=1;j<b;++j){
+// //			for (int k=1;k<c;++k) 
+// //				cout<<dn[i][j][k]<<" ";
+// //		cout<<endl;
+// //		}
+// //		cout<<endl;
+// //	}
+
+// 		for(int i=1;i<a;i++){
+// 			for(int j=1;j<b;j++){
+// 				for(int k=1;k<c;k++){
+// 					for(int ii=i;ii<a;ii++){
+// 						for(int jj=j;jj<b;jj++){
+// 							for(int kk=k;kk<c;kk++){
+// 								ll sum=dn[ii][jj][kk];
+
+// 								sum-=dn[i-1][jj][kk];
+// 								sum-=dn[ii][j-1][kk];
+// 								sum-=dn[ii][jj][k-1];
+								
+// 								sum+=dn[i-1][j-1][kk];
+// 								sum+=dn[i-1][jj][k-1];
+// 								sum+=dn[ii][j-1][k-1];
+
+// 								sum-=dn[i-1][j-1][k-1];
+// 								if(sum>ans)ans=sum;
+// 							}
+// 						}
+// 					}
+
+// 				}
+// 			}
+// 		}
+// 		cout<<ans<<endl;
+// 		if(t)cout<<endl;
+// 	}
+// }
 #include <bits/stdc++.h>
+
 using namespace std;
 
-#define ll long long
 int main(){
-	int t;cin>>t;
-	while(t--){
-		int a,b,c;cin>>a>>b>>c;
-		a++;b++;c++;
-		ll dn[a][b][c]={},ans=INT_MIN;
-		for(int i=1;i<a;i++){
-			for(int j=1;j<b;j++){
-				for(int k=1;k<c;k++){
-					cin>>dn[i][j][k];
-					dn[i][j][k]+=dn[i-1][j][k];
-					dn[i][j][k]+=dn[i][j-1][k];
-					dn[i][j][k]+=dn[i][j][k-1];
-					
-					dn[i][j][k]-=dn[i-1][j-1][k];
-					dn[i][j][k]-=dn[i-1][j][k-1];
-					dn[i][j][k]-=dn[i][j-1][k-1];
+    int t,a,b,c;
+    cin>>t;
+    while(t--){
+        cin>>a>>b>>c;
+        a++;b++;c++;
 
-					dn[i][j][k]+=dn[i-1][j-1][k-1];
+        long long ex[a][b][c]={},ans=LLONG_MIN;
+        for(int i=1;i<a;i++){   
+            for(int j=1;j<b;j++){
+                for(int k=1;k<c;k++){
+                    cin>>ex[i][j][k];
+                    ex[i][j][k]+=ex[i-1][j][k]+ex[i][j-1][k]+ex[i][j][k-1]-ex[i-1][j-1][k]-ex[i-1][j][k-1]-ex[i][j-1][k-1]+ex[i-1][j-1][k-1];
+                    for(int ni=1;ni<=i;ni++){   
+                        for(int nj=1;nj<=j;nj++){
+                            for(int nk=1;nk<=k;nk++){
+                                long long t=ex[i][j][k]-(ex[i-ni][j][k]+ex[i][j-nj][k]+ex[i][j][k-nk]-ex[i-ni][j-nj][k]-ex[i-ni][j][k-nk]-ex[i][j-nj][k-nk]+ex[i-ni][j-nj][k-nk]);
+                                if(t>ans) ans=t;
 
-				}
-			}
-		}
-//    for (int i=1;i<a;++i){
-//		for (int j=1;j<b;++j){
-//			for (int k=1;k<c;++k) 
-//				cout<<dn[i][j][k]<<" ";
-//		cout<<endl;
-//		}
-//		cout<<endl;
-//	}
-
-		for(int i=1;i<a;i++){
-			for(int j=1;j<b;j++){
-				for(int k=1;k<c;k++){
-					for(int ii=i;ii<a;ii++){
-						for(int jj=j;jj<b;jj++){
-							for(int kk=k;kk<c;kk++){
-								ll sum=dn[ii][jj][kk];
-
-								sum-=dn[i-1][jj][kk];
-								sum-=dn[ii][j-1][kk];
-								sum-=dn[ii][jj][k-1];
-								
-								sum+=dn[i-1][j-1][kk];
-								sum+=dn[i-1][jj][k-1];
-								sum+=dn[ii][j-1][k-1];
-
-								sum-=dn[i-1][j-1][k-1];
-								if(sum>ans)ans=sum;
-							}
-						}
-					}
-
-				}
-			}
-		}
-		cout<<ans<<endl;
-		if(t)cout<<endl;
-	}
+                            }
+                        }
+                    }
+ 
+                }
+            }
+        }
+        cout<<ans<<endl;
+        if(t!=0)cout<<endl;
+    }
 }
