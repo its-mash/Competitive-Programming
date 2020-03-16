@@ -1,39 +1,39 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 int main(){
-    int t,ct;
-    cin>>t;
-    ct=t;
-    while(t--){
-
-        int n,m,k;
-        cin>>n>>m>>k;
-        n++;m++;
-        long long ex[n][m]={};
-        long long ans=0,oldPrice=0;
-        for(int i=1;i<n;i++){
-            for(int j=1;j<m;j++){
-                cin>>ex[i][j];
-                ex[i][j]+=ex[i-1][j]+ex[i][j-1]-ex[i-1][j-1];
-                for(int ni=1;ni<=i;ni++){
-                    for(int nj=1;nj<=j;nj++){
-                       long long t= ex[i][j]-(ex[i-ni][j]+ex[i][j-nj]-ex[i-ni][j-nj]);
-                       if(t<=k){
-                           if(nj*ni>ans){
-                               ans=nj*ni;
-                            //    cout<<i-ni+1<<","<<j-nj+1<<" -> "<<i<<","<<j<< " = "<<t<<" "<<ni*nj<<" M"<<ans<<endl;
-                               oldPrice=t;
-                           }else if (nj*ni==ans && t<oldPrice){
-                              oldPrice=t; 
-                           }
-                       }
-                    }
+    double h,u,d,f;
+    while(cin>>h>>u>>d>>f && h!=0){
+        f=u*f/100;
+        double a=f,b=2*d-2*u-f,c=2*(h-d);
+        double m=b*b-4*a*c;
+        if(m>=0){
+            double ans1=(-b-sqrt(m))/(2*a);
+            double ans2=(-b+sqrt(m))/(2*a);
+            //cout<<ans1<<" 5 "<<ans2<<endl;
+            double ans=min(ans1,ans2);
+            if(ans==int(ans)){
+                ans++;
+                if(ans*u-ans*d-(ans*(ans-1))/2 > h)
+                    cout<<"success on day +"<<ans<<endl;
+                else
+                {
+                    m=b*b+4*a*2*d;
+                    double ans1=(-b-sqrt(m))/(2*a);
+                    double ans2=(-b+sqrt(m))/(2*a);
+                    cout<<"failure on day y "<<ceil(max(ans1,ans2))<<endl;
                 }
+                
             }
-            // cout<<endl;
+            else
+                cout<<"success on day "<<ceil(min(ans1,ans2))<<endl;
         }
-        cout<<"Case #"<<ct-t<<": "<<ans<<" "<<oldPrice<<endl;
+        else{
+            m=b*b+4*a*2*d;
+            double ans1=(-b-sqrt(m))/(2*a);
+            double ans2=(-b+sqrt(m))/(2*a);
+           // cout<<ans1<<" 6 "<<ans2<<endl;
+            cout<<"failure on day x "<<ceil(max(ans1,ans2))<<endl;
+        }
     }
 }
