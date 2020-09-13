@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int x,y;
+    long long ans;
+    while(cin>>x>>y && x!=0){
+        int xx=x,yy=y;
+        if(x>y){
+            swap(x,y);
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+        if(x==1)ans=y;
+        else if(x==2){
+            ans=round(y/4)*4;
+            if(y%4>1)
+                ans+=4;
+            else
+                ans+=(y%4)*2;
+        }
+        else{
+            ans=(x/2*y+((x&1)?round(y/2.0):0));
+        }
+        cout<<ans<<" knights may be placed on a "<<xx<<" row "<<yy<<" column board."<<endl;
+    }
+}
